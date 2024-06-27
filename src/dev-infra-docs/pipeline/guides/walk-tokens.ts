@@ -1,0 +1,26 @@
+import { Token } from 'marked';
+import { DocsCodeToken } from './extensions/docs-code/docs-code';
+import { processMermaidCodeBlock } from './mermaid'
+/**
+ * Describe a HANDLE_MERMAID value which esbuild will use at build time to determine if the mermaid
+ * related code should be included in the bundle.
+ * THIS VALUE IS NOT AVAILABLE AT RUNTIME.
+ */
+export declare const HANDLE_MERMAID: boolean;
+
+/** Type guard for if a provided token is the DocsCodeToken. */
+function isDocsCodeToken(token: Token): token is DocsCodeToken {
+  return !!(token as DocsCodeToken).language;
+}
+
+/**
+ * Handle the provided token based on the token itself replacing its content/data in place
+ * as appropriate.
+ */
+export async function walkTokens(token: Token): Promise<void> {
+  if (!isDocsCodeToken(token) || token.language !== 'mermaid') {
+    return;
+  }
+
+  return await processMermaidCodeBlock(token);
+}

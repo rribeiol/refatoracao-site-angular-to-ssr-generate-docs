@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src/dev-infra-docs/",
+    "module": "CommonJS",
+    "target": "es2020",
+    "lib": ["es2021", "dom"],
+    "strict": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "isolatedModules": true ,
+    "outDir": "./dist/dev-infra-docs",
+  },
+  "files": [
+    "src/dev-infra-docs/pipeline/guides/index.ts"
+  ],
+  "exclude": [
+    "./src/dev-infra-docs/**/*",
+    "src/dev-infra-docs/**/*",
+  ]
+}
